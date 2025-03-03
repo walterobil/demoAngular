@@ -1,0 +1,72 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">{{titulo}} usuario</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Form -->
+<div class="inner-wrapper">
+  <form [formGroup]="usuarioForm" (ngSubmit)="saveForm()" #resetUsuarioForm="ngForm" novalidate autocomplete="off">
+    <!-- Left block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Nombre -->
+        <mat-form-field>
+          <input matInput placeholder="Nombre completo" formControlName="name"
+            oninput="this.value=this.value.toUpperCase();this.value=this.value.replace(/[\(|\*|\/|\&|\%|\#|\$|\)|,]/,'');">
+          <mat-error *ngIf="handleError('name', 'required')">
+            Debe ingresar <strong>nombre de usuario</strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('name', 'minlength')">
+            No es posible ingresar menos de {{usuarioForm.controls['name'].errors?.minlength['requiredLength']}} caracteres
+          </mat-error>
+          <mat-error *ngIf="handleError('name', 'maxlength')">
+            No es posible ingresar más de {{usuarioForm.controls['name'].errors?.maxlength['requiredLength']}} caracteres
+          </mat-error>
+        </mat-form-field>
+        <br/>
+        <!-- EMAIL -->
+        <mat-form-field>
+          <input matInput placeholder="E-mail" formControlName="email"
+            oninput="this.value=this.value.replace(/[\(|\*|\/|\&|\%|\#|\$|\)|,]/,'');">
+          <mat-error *ngIf="handleError('email', 'required')">
+            Debe ingresar <strong>E-mail</strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('email', 'minlength')">
+            No es posible ingresar menos de {{usuarioForm.controls['email'].errors?.minlength['requiredLength']}} caracteres
+          </mat-error>
+          <mat-error *ngIf="handleError('email', 'maxlength')">
+            No es posible ingresar más de {{usuarioForm.controls['email'].errors?.maxlength['requiredLength']}} caracteres
+          </mat-error>
+          <mat-error *ngIf="handleError('email', 'email')">
+            Correo electrónico no válido
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+
+    <!-- Submit & Reset -->
+    <div *ngIf="mod!=='view'">
+      <mat-card>
+        <div class="full-wrapper button-wrapper">
+          <div class="button-wrapper">
+            <button mat-flat-button color="warn">Guardar</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <!-- Regresar -->
+    <div *ngIf="mod==='view'">
+      <mat-card>
+        <div class="full-wrapper button-wrapper">
+          <div class="button-wrapper">
+            <button mat-flat-button color="warn" (click)="backList()">Regresar</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+  </form>
+</div>
+

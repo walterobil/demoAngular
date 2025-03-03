@@ -1,0 +1,209 @@
+table {
+    width: 100%;
+  }
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Espacio entre tarjetas */
+    padding: 16px;
+  }
+  
+  .task-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .task-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  mat-card-header {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  mat-card-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  mat-card-content {
+    padding: 16px;
+  }
+  
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px;
+  }
+  
+  .task-list {
+    display: flex;
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas */
+    gap: 20px; /* Espacio entre tarjetas */
+    padding: 20px;
+    justify-content: center; /* Centra las tarjetas horizontalmente */
+  }
+  
+  .task-card {
+    width: 300px; /* Ancho fijo para cada tarjeta */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .task-card:hover {
+    transform: translateY(-5px); /* Efecto de levantar la tarjeta */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el mouse */
+  }
+  
+  .task-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333; /* Color de texto oscuro */
+  }
+  
+  .task-content {
+    padding: 16px;
+    font-size: 14px;
+    color: #666666; /* Color de texto gris */
+  }
+  
+  .task-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    padding: 16px;
+    border-top: 1px solid #eeeeee; /* Línea divisoria */
+  }
+  
+  button {
+    background-color: #3f51b5; /* Color primario de Angular Material */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .button-container {
+    text-align: right; /* Alinea el contenido a la derecha */
+    margin-top: 10px;  /* Ajusta el margen superior si es necesario */
+  }
+  button:hover {
+    background-color: #303f9f; /* Color más oscuro al pasar el mouse */
+  }
+  /* Estilos para el encabezado */
+.app-header {
+    background-color: #3f51b5; /* Color primario de Angular Material */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .header-content {
+    max-width: 800px;
+    margin: 0 auto; /* Centrar el contenido */
+  }
+  
+  .header-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .header-description {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .header-button {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 25px; /* Bordes redondeados */
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-button:hover {
+    background-color: #303f9f; /* Color más oscuro al pasar el mouse */
+  }
+  
+  .header-button mat-icon {
+    margin-right: 8px;
+  }
+  .header-nav {
+    margin-top: 20px;
+  }
+  
+  .header-nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .header-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .header-search {
+    width: 300px;
+    margin-top: 20px;
+  }
+  
+  .header-search input {
+    color: white;
+  }
+  
+  .header-search .mat-form-field-underline {
+    background-color: white;
+  }
+  
+  .header-search .mat-form-field-label {
+    color: white;
+  }
+
+  /* Estilos para la tabla */
+.heroes-table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    margin-top: 20px;
+  }
+  
+  /* Estilos para los encabezados */
+  .heroes-table th {
+    background-color: #3f51b5; /* Color primario de Angular Material */
+    color: white; /* Texto blanco */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  /* Estilos para las celdas */
+  .heroes-table td {
+    font-size: 14px;
+    color: #333333; /* Color de texto oscuro */
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0; /* Línea divisoria */
+  }
+  
+  /* Estilos para las filas */
+  .heroes-table tr:hover {
+    background-color: #f5f5f5; /* Fondo gris claro al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor a una mano */
+  }
+  
+  /* Estilos para el badge (ID) */
+  .badge {
+    display: inline-block;
+    background-color: #3f51b5; /* Color primario de Angular Material */
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px; /* Bordes redondeados */
+  }

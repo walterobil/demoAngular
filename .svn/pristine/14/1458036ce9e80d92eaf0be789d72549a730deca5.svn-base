@@ -1,0 +1,118 @@
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MessageService } from 'src/app/comun/dialogs/message/message.service';
+import { ApiUsersService } from '../api-users.service';
+
+@Component({
+  selector: 'app-cru-users',
+  templateUrl: './cru-users.component.html',
+})
+export class CruUsersComponent implements OnInit {
+
+  @ViewChild('resetUsuarioForm') myNgForm: any;
+  usuarioForm!: FormGroup;
+  mod = "";
+  titulo = "";
+
+  ngOnInit() {
+    this.refreshForm();
+  }
+
+  /* Carga inicial */
+  constructor(
+    public fb: FormBuilder,
+    private router: Router,
+    private ngZone: NgZone,
+    private actRoute: ActivatedRoute,
+    private usuarioApi: ApiUsersService,
+    private messageService: MessageService,
+  ) {
+    /** Modo de acceso view, edit, add en base a la ruta */
+    this.mod=this.actRoute.snapshot.url[0].path.split("-")[0];
+    this.detTitle();
+    /* Si trae el id en el parametro obtiene sus datos */
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    if (id!==null)
+    {
+      this.usuarioApi.getUsuario(parseInt(id)).subscribe(data => {
+        this.usuarioForm = this.fb.group({
+          id: [data.body.id],
+          name: [{value: data.body.name, disabled: this.mod==='view' }, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+          email: [{value: data.body.email, disabled: this.mod==='view' }, [Validators.required, Validators.email, Validators.minLength(5), Validators.maxLength(60)]],
+        })
+      })
+    }
+
+  }
+
+  /* Inicializar */
+  refreshForm() {
+    this.usuarioForm = this.fb.group({
+      name: [{value: '', disabled: this.mod==='view' }, [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      email: [{value: '', disabled: this.mod==='view' }, [Validators.required, Validators.email, Validators.minLength(5), Validators.maxLength(60)]],
+    })
+  }
+
+  /* Obtiene los errores */
+  public handleError = (controlName: string, errorName: string) => {
+    return this.usuarioForm.controls[controlName].hasError(errorName);
+  }
+
+  /* Guardar */
+  saveForm()
+  {
+    if (this.mod==="add")
+    {
+      this.submitUsuarioForm();
+    }
+    else if (this.mod==="edit")
+    {
+      this.updateUsuarioForm();
+    }
+  }
+
+  /* Ingresar usuario */
+  submitUsuarioForm() {
+    if (this.usuarioForm.valid) {
+      this.usuarioApi.addUsuario(this.usuarioForm.value).subscribe(res => {
+        this.messageService.openDialog("Aviso","Usuario guardado exitosamente");
+        this.myNgForm.resetForm();
+      });
+    }
+  }
+
+  /* Actualizar usuario */
+  updateUsuarioForm() {
+    if (this.usuarioForm.valid) {
+      this.usuarioApi.updateUsuario(this.usuarioForm.value).subscribe( res => {
+        this.messageService.openDialog("Aviso","Usuario actualizado exitosamente");
+        this.ngZone.run(() => this.router.navigateByUrl('/menu-usuario/list-usuario'));
+      });
+    }
+  }
+
+  /* Volver a listado de usuarios */
+  backList() {
+    this.ngZone.run(() => this.router.navigateByUrl('/menu-usuario/list-usuario'));
+  }
+
+  /** Definicion de titulo */
+  detTitle()
+  {
+    /** Titulo en pantalla */
+    if (this.mod==="view")
+    {
+      this.titulo="Consultar";
+    }
+    else if (this.mod==="edit")
+    {
+      this.titulo="Editar";
+    }
+    else if (this.mod==="add")
+    {
+      this.titulo="Agregar";
+    }
+  }
+
+}

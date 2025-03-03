@@ -1,0 +1,48 @@
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+      <td mat-cell *matCellDef="let element">{{ element.cantidad }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+    <!-- Encabezados de la tabla 
+
+<div class="button-container">
+    <button (click)="exportToExcel1()">Exportar a Excel</button>
+</div>
+  -->
+  <table class="heroes-table">
+    <!-- Encabezados de la tabla -->
+    <thead>
+      <tr>
+        <th >ID</th> <!-- Encabezado para la columna ID -->
+        <th>Nombre</th> <!-- Encabezado para la columna Nombre -->
+      </tr>
+    </thead>
+  
+    <!-- Cuerpo de la tabla -->
+    <tbody>
+      <tr *ngFor="let hero of heroes"> 
+        <td><span class="badge">{{ hero.id }}</span></td> <!-- Columna ID -->
+        <td>{{ hero.name }}</td> <!-- Columna Nombre -->
+      </tr>
+    </tbody>
+</table>
+
+<mat-form-field class="header-search">
+    <input matInput placeholder="Buscar héroes">
+    <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>

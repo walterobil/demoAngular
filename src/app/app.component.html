@@ -1,0 +1,42 @@
+<!--<div id="header-sat" class="ui-banner-application-sat"> -->
+<div id="header">
+  <div id="header-sat">
+    <div class="ui-left-header-sat">{{user}}</div>
+    <div class="ui-right-header-sat"></div>
+    <div class="ui-center-header-sat">{{title}}</div>
+  </div>
+</div>
+
+<mat-toolbar color="primary" class="header">
+  <mat-toolbar-row>
+  <!-- Toolbar -->
+  <span class="menu-spacer"></span>
+    <div>
+      <a mat-button routerLinkActive="active" routerLink="/menu-usuario"> Usuarios </a>
+    </div>
+    <span class="menu-spacer">
+  </span>
+
+  <span class="menu-spacer"></span>
+  <div>
+    <a mat-button routerLinkActive="active" routerLink="/menu-pais"> Paises </a>
+  </div>
+  <span class="menu-spacer">
+  </span>
+  
+
+  <div>
+    <a mat-button routerLinkActive="active" routerLink="/consulta-eaiaduanas"> Consulta EAI </a>
+  </div>
+
+
+  <span class="menu-spacer"></span>
+  <div>
+    <a mat-button routerLinkActive="active" routerLink="/menu-transacciones-aduaneras"> Registro alumnos</a>
+  </div>
+  <span class="menu-spacer">
+  </span>
+  
+  </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>

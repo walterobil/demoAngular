@@ -1,0 +1,104 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Consulta de Paises de la vida</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Form -->
+<div class="inner-wrapper">
+      <!-- Left block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- pais -->
+        <div>
+          <mat-form-field>
+            <mat-label>País</mat-label>
+            <mat-select name="pais" placeholder="País" (selectionChange)="getCityByCountry($event.value,$event.source.triggerValue)">
+              <mat-option *ngFor="let country of countries" [value]="country.id">
+                {{country.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br/>
+        </div>
+        <!-- ciudad -->
+        <div>
+          <mat-form-field>
+            <mat-label>Ciudades de la vida</mat-label>
+            <mat-select placeholder="Ciudad" (selectionChange)="getStreetByCity($event.value, $event.source.triggerValue)">
+              <mat-option *ngFor="let city of cities" [value]="city.id">
+                {{city.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br/>
+        </div>
+        <!-- calle -->
+        <div>
+          <mat-form-field>
+            <mat-label>Calle</mat-label>
+            <mat-select placeholder="Calle" (selectionChange)="getNameStreet($event.value, $event.source.triggerValue)">
+              <mat-option *ngFor="let street of streets" [value]="street.id">
+                {{street.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br/>
+        </div>
+        <!-- fecha -->
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" (dateChange)="getDate($event.value)">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <br/>
+        </div>
+      </div>
+    </mat-card>
+    <br/>
+    <br/>
+    <mat-card>
+    {{streetAd}}{{cityAd}}{{countryAd}}{{dateAd}}
+    </mat-card>
+</div>
+
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+               required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    <!--  <button mat-button (click)="stepper.reset()">Reset</button> -->
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

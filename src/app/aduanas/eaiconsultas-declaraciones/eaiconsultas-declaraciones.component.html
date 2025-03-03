@@ -1,0 +1,25 @@
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Mono&display=swap" rel="stylesheet">
+
+<div class="table-container">
+    <table class="custom-table mat-elevation-z8" name="ListadoDePersonas">
+      <thead>
+        <tr class="table-header">
+          <th class="code-header">Código</th>
+          <th class="name-header">Nombre</th>
+          <th class="status-header">Estatus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let persona of personas" class="table-row">
+          <td class="code-cell">{{ persona.codigo }}</td>
+          <td class="name-cell">{{ persona.nombre | titlecase }}</td>
+          <td class="status-cell">
+            <span class="status-badge" [ngClass]="{'activo': persona.estatus === 'A', 'inactivo': persona.estatus === 'I'}">
+              {{ persona.estatus === 'A' ? 'Activo' : persona.estatus === 'I' ? 'Inactivo' : '' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

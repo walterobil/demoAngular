@@ -1,0 +1,19 @@
+<mat-sidenav-container>
+    <!-- Sidenav -->
+    <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true"
+      [fixedTopGap]>
+      <mat-nav-list>
+        <a mat-list-item routerLinkActive="active" routerLink="adconsultas-declaraciones">
+          <mat-icon>add</mat-icon> Registro 
+        </a>
+        <a mat-list-item routerLinkActive="active" routerLink="eaiconsultas-declaraciones">
+          <mat-icon>format_list_bulleted</mat-icon> Mensajes del EAI
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+    <!-- Main content -----  -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

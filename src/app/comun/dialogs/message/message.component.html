@@ -1,0 +1,17 @@
+<h1 mat-dialog-title class="title-{{getStyleStatus(data?.status)}}"> {{ data?.title }} </h1>
+<div mat-dialog-content class="div-{{getStyleStatus(data?.status)}}">
+  <p class="message-text-{{getStyleStatus(data?.status)}}"> {{ data?.message }}</p>
+  <div class="detail-content-error" *ngIf="data.errorRes">
+    <li *ngFor="let fieldError of detailError">
+      <span class="field-message">{{getUserText(fieldError[0])}}</span> {{fieldError[1]}}
+    </li>
+    <div class="code-error">
+      <p class="value-code-error"> {{ data?.errorRes?.errorCode }}</p>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>
+    Cerrar
+  </button>
+</div>
