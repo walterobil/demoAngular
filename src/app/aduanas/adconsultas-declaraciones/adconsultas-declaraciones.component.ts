@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// se agrega un comentario antes de component
 
 @Component({
   selector: 'app-adconsultas-declaraciones',
