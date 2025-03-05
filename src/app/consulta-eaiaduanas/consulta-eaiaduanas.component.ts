@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import * as XLSX from 'xlsx';
-import * as FileSaver from 'file-saver'
 
 
 @Component({
   selector: 'app-consulta-eaiaduanas',
   templateUrl: './consulta-eaiaduanas.component.html',
-  styleUrls: ['./consulta-eaiaduanas.component.scss']
+  styleUrls: ['./consulta-eaiaduanas.component.css']
 })
 export class ConsultaEAIaduanasComponent {
   displayedColumns: string[] = ['nombre', 'cantidad', 'estado'];

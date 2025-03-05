@@ -21,14 +21,14 @@ export class ListUsersComponent implements OnInit {
     private usuarioApi: ApiUsersService,
     private dialog: MatDialog,
     ) {
-    this.usuarioApi.getUsuarios().subscribe(data => {
+      this.usuarioApi.getUsuarios().subscribe(data => {
       this.usuarioData = data;
       this.dataSource = new MatTableDataSource<User>(this.usuarioData);
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
         if (this.usuarioData.length>0)
           {
-            this.dataSource.paginator._intl.itemsPerPageLabel="Registros por página";
+            //this.dataSource.paginator._intl.itemsPerPageLabel="Registros por página";
           }
       }, 0);
     });
