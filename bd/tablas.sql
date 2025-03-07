@@ -1,3 +1,4 @@
+--entidades para el inventario.
 create table "Inventario".gen_empresas(
 idEmpresa varchar(5) primary key,
 nombre varchar(100) not null,
