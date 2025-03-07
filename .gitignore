@@ -44,3 +44,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Eliminar .angular/cache/16.2.16
+/.angular/cache/16.2.16
+/.svn
+/.vscode
