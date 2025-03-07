@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const environment = {\n  production: false,\n  seguridad: false,\n  API_URL: \"http://localhost:8080\",\n  //API_URL: \"https://rtu.desa.sat.gob.gt/api/cont-cump\",\n  API_URL_SEC: \"https://rtu.desa.sat.gob.gt/api/sat-seguridad\"\n};","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
