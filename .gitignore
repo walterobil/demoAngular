@@ -46,6 +46,6 @@ testem.log
 Thumbs.db
 
 # Eliminar .angular/cache/16.2.16
-/.angular/cache/16.2.16
-/.svn
-/.vscode
+.angular/cache/16.2.16
+.svn/
+.vscode/

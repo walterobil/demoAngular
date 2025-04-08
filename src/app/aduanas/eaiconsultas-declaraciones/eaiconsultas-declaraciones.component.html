@@ -1,25 +1,48 @@
-
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Mono&display=swap" rel="stylesheet">
-
-<div class="table-container">
-    <table class="custom-table mat-elevation-z8" name="ListadoDePersonas">
-      <thead>
-        <tr class="table-header">
-          <th class="code-header">Código</th>
-          <th class="name-header">Nombre</th>
-          <th class="status-header">Estatus</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let persona of personas" class="table-row">
-          <td class="code-cell">{{ persona.codigo }}</td>
-          <td class="name-cell">{{ persona.nombre | titlecase }}</td>
-          <td class="status-cell">
-            <span class="status-badge" [ngClass]="{'activo': persona.estatus === 'A', 'inactivo': persona.estatus === 'I'}">
-              {{ persona.estatus === 'A' ? 'Activo' : persona.estatus === 'I' ? 'Inactivo' : '' }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+ 
+<div class="table-container" >
+  <table class="custom-table mat-elevation-z8" name="ListadoDePersonas" >
+    <thead>
+      <tr class="table-header" >
+        <th class="code-header" >Código</th>
+        <th class="name-header">Nombre</th>
+        <th class="status-header">Estatus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--<tr *ngFor="let persona of paginatedData" class="table-row"> -->
+      <!--<tr *ngFor="let persona of personas" class="table-row">  -->
+      <tr *ngFor="let persona of paginatedData" class="table-row">
+        <td class="code-cell">{{ persona.codigo }}</td>
+        <td class="name-cell">{{ persona.nombre | titlecase }}</td>
+        <td>            
+          <span class="status-badge">
+            {{ persona.estatus.match('A') ? 'Activo' : persona.estatus.match('I') ? 'Inactivo' : 'n/a' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Controles de paginación -->
+  <div class="pagination-controls" *ngIf="personas.length > itemsPerPage">
+    <button 
+          (click)="changePage(currentPage - 1)" 
+          [disabled]="currentPage === 1"
+          class="pagination-button">
+          Anterior
+    </button>
+    <span 
+          *ngFor="let page of pageNumbers" 
+          (click)="changePage(page)"
+          [class.active]="page === currentPage"
+          class="page-number">
+          {{ page }}
+    </span>
+    <button 
+          (click)="changePage(currentPage + 1)" 
+          [disabled]="currentPage === totalPages"
+          class="pagination-button">
+          Siguiente
+    </button>
+  </div>  
+</div>

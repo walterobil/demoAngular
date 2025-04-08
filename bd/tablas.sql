@@ -1,5 +1,5 @@
 --entidades para el inventario.
-create table "Inventario".gen_empresas(
+create table "inv".gen_empresas(
 idEmpresa varchar(5) primary key,
 nombre varchar(100) not null,
 direccion varchar(200) not null,
@@ -14,7 +14,7 @@ adiciono varchar(20) not null,
 fechaadicion date default current_date
 );
 
-create table "Inventario".inv_sucursales(
+create table "inv".inv_sucursales(
 idSucursal varchar(10) primary key,
 idEmpresa varchar(5) not null,
 descripcion varchar(100) not null,
@@ -25,7 +25,7 @@ estado varchar(3) CHECK(estado IN ('A','I','PEN','DES','CAN')),
 constraint fk_SucursalXempresa foreign key (idEmpresa) references "Inventario".gen_empresas(idEmpresa)
 );
 
-create table "Inventario".inv_bodegas(
+create table "inv".inv_bodegas(
 idBodega varchar(10),
 idSucursal varchar(10),
 descripcion varchar(100) not null,
@@ -37,13 +37,13 @@ constraint pk_bodegas primary key(idbodega,idsucursal),
 constraint fk_sucursalesbodegas  foreign key (idSucursal) references "Inventario".inv_sucursales(idSucursal)
 );
 
-create table "Inventario".inv_categorias(
+create table "inv".inv_categorias(
 idCategoria varchar(5) primary key,
 descripcion varchar(100) not null,
 estado varchar(3) CHECK(estado IN ('A','I','PEN','DES','CAN')) 
 );
 
-create table "Inventario".inv_lineas(
+create table "inv".inv_lineas(
 idlinea varchar(5),
 idcategoria varchar(5) not null,
 descripcion varchar(100) not null,
@@ -55,7 +55,7 @@ constraint pk_lineas primary key (idlinea,idcategoria),
 constraint fk_categoriaxlinea foreign key (idcategoria) references "Inventario".inv_categorias(idCategoria)
 );
 
-CREATE TABLE "Inventario".inv_productos (
+CREATE TABLE "inv".inv_productos (
     idProducto VARCHAR(20) not NULL,
     idbodega VARCHAR(10) not NULL,    
     idSucursal varchar(10) not null,
@@ -87,11 +87,11 @@ CREATE TABLE "Inventario".inv_productos (
     CONSTRAINT fk_bodegas FOREIGN KEY (idbodega,idsucursal) REFERENCES "Inventario".inv_bodegas(idBodega,idsucursal)
 );
 
-drop table "Inventario".inv_productos;
-drop table "Inventario".inv_bodegas; 
-drop table "Inventario".inv_sucursales;
-drop table "Inventario".gen_empresas;
-drop table "Inventario".inv_lineas;
-drop table "Inventario".inv_categorias; 
+drop table "inv".inv_productos;
+drop table "inv".inv_bodegas; 
+drop table "inv".inv_sucursales;
+drop table "inv".gen_empresas;
+drop table "inv".inv_lineas;
+drop table "inv".inv_categorias; 
 
 
